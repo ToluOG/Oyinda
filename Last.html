@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
-      body {
+        body {
             font-family: 'Poppins', sans-serif;
             background-color: #ffe6f1; /* Light pink background */
             padding: 0;
@@ -16,8 +16,6 @@
             height: 100vh; /* Ensure the body takes up the full height of the viewport */
         }
 
-
-        
         /* Falling emojis container */
         .falling-emojis {
             position: absolute;
@@ -47,8 +45,7 @@
         }
 
         /* Style for the thank you text */
-        
-   .container {
+        .container {
             text-align: center;
             position: absolute;
             top: 50%;
@@ -61,6 +58,46 @@
             margin: 0;
         }
 
+        /* Fade out animation for "Thank you for being my girl" */
+        .thank-you {
+            display: inline-block;
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Fade in animation for "I love you" */
+        .love-text {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 2s; /* Delay to fade in after "Thank you" fades out */
+            font-family: 'Dancing Script', cursive;
+            font-size: 72px; /* Large size for "I love you" */
+            color: #ff4081; /* Gradient color */
+            background: linear-gradient(to right, #ff69b4, #d6336c); /* Gradient from light to dark pink */
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3), 0px 0px 25px rgba(255, 105, 180, 0.7); /* Glowing effect */
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        /* Animation to make the text glow */
+        @keyframes glow {
+            0% {
+                text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3), 0px 0px 25px rgba(255, 105, 180, 0.7);
+            }
+            100% {
+                text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5), 0px 0px 40px rgba(255, 105, 180, 1);
+            }
+        }
 
         .container span {
             display: inline-block;
@@ -88,6 +125,31 @@
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
+
+        /* Style for the link button */
+        .link-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #d6336c; /* Pink background */
+            border: 2px solid #d6336c; /* Pink border */
+            border-radius: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none; /* Removes underline */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        }
+
+        /* Hover effect for the link button */
+        .link-button:hover {
+            background-color: white;
+            color: #d6336c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05); /* Slightly enlarges the button */
+        }
     </style>
 </head>
 <body>
@@ -98,9 +160,9 @@
 
     <!-- Thank you message -->
     <div class="container">
-        <span>Thank you for being my girl</span>
+        <span class="thank-you" id="thankYouText">Thank you for being my girl</span>
         <br>
-        <span>I love you.</span>
+        <span class="love-text" id="loveText">I love you. ❤️</span>
     </div>
 
     <script>
@@ -118,13 +180,24 @@
                 emojisContainer.appendChild(emoji);
 
                 // Remove emoji after animation ends
-                setTimeout(() => emoji.remove(), 5000);
+                setTimeout(() => emoji.remove(), 6000);
             }
         }
 
         // Start the emoji generation
         generateFallingEmojis();
         setInterval(generateFallingEmojis, 2000); // Generate new emojis every 2 seconds
+
+        // Function to remove the "Thank you" text and show "I love you" text after animation
+        setTimeout(() => {
+            const thankYouText = document.getElementById('thankYouText');
+            const loveText = document.getElementById('loveText');
+
+            // Remove "Thank you" text after fade-out
+            thankYouText.style.display = 'none';
+            loveText.style.display = 'inline-block'; // Show "I love you" text
+        }, 2000); // Wait for "Thank you" to fade out before removing
     </script>
 </body>
 </html>
+
