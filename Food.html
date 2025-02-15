@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How About Food?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Style for "How About Food?" */
+        #pickYourFoodText {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            font-weight: bold;
+            color: black; /* Pink color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow for depth */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Grid for the food images */
+        .foods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            max-width: 400px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .food {
+            width: 100%;
+            height: 200px; /* Set fixed height to maintain the aspect ratio */
+            object-fit: cover; /* Ensure the image keeps its aspect ratio */
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out; /* Smooth transition for the effects */
+            position: relative;
+        }
+
+        .food.selected {
+            filter: brightness(0.7); /* Darkens the image when selected */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adds shadow */
+        }
+
+        .food.selected::after {
+            content: "✔"; /* Adds the checkmark */
+            font-size: 32px;
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .food:hover {
+            cursor: pointer;
+        }
+
+        .food.selected:hover {
+            cursor: not-allowed; /* Prevent changing the state after selecting */
+        }
+
+        /* Styling for the buttons */
+        .action-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #d6336c; /* Pink background */
+            border: 2px solid #d6336c; /* Pink border */
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease-in-out; /* Smooth hover effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        }
+
+        /* Hover effect for the buttons */
+        .action-button:hover {
+            background-color: white;
+            color: #d6336c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05); /* Slightly enlarges the button */
+        }
+
+        .action-button:active {
+            background-color: #d6336c;
+            color: white;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); /* Button press effect */
+        }
+
+        .container {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f1; /* Light pink background */
+            padding: 20px;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="pickYourFoodText">How About Food?</h1> <!-- Updated text for food selection -->
+        <div class="foods">
+            <img src="Jollof.jpg" alt="Food 1" class="food" onclick="toggleFood(this)">
+            <img src="Amala.jpg" alt="Food 2" class="food" onclick="toggleFood(this)">
+            <img src="Yam.jpg" alt="Food 3" class="food" onclick="toggleFood(this)">
+            <img src="Pasta.jpg" alt="Food 4" class="food" onclick="toggleFood(this)">
+        </div>
+        <div class="buttons">
+            <button onclick="pickEverything()" class="action-button">Or Just Pick Everything</button>
+            <button onclick="nextPage()" class="action-button">Next</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleFood(element) {
+            element.classList.toggle("selected");
+        }
+
+        function pickEverything() {
+            // Select all food images and toggle the "selected" class for each one
+            let foods = document.querySelectorAll('.food');
+            foods.forEach(food => {
+                if (!food.classList.contains("selected")) {
+                    food.classList.add("selected"); // Apply the "selected" effect
+                }
+            });
+        }
+
+        function nextPage() {
+            // Function to navigate to the next page
+            window.location.href = 'Last.html'; // Replace with the actual link to the next page
+        }
+    </script>
+</body>
+</html>
